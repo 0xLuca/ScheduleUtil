@@ -59,6 +59,12 @@ public class Schedulers {
         return scheduledPool.schedule(() -> f.apply(param), millis, TimeUnit.MILLISECONDS);
     }
 
+    /* Repeating */
+
+    public static ScheduledFuture<?> repeat(Runnable r, long startDelayMillis, long repeatDelayMillis) {
+        return scheduledPool.scheduleAtFixedRate(r, startDelayMillis, repeatDelayMillis, TimeUnit.MILLISECONDS);
+    }
+
     /* Factory Methods */
 
     public static RunningScheduler getScheduler(Runnable r) {
