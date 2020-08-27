@@ -13,6 +13,11 @@ public class Schedulers {
         scheduledPool = Executors.newScheduledThreadPool(threads);
     }
 
+    public static void shutdown() {
+        pool.shutdown();
+        scheduledPool.shutdown();
+    }
+
     private static List<Scheduler> schedulers;
 
     /* Runnables */
@@ -27,11 +32,11 @@ public class Schedulers {
 
     /* Consumers */
 
-    public <T> void consumeAsync(Consumer<T> c, T param) {
+    public static <T> void consumeAsync(Consumer<T> c, T param) {
         pool.submit(() -> c.accept(param));
     }
 
-    public <T> void consumeLaterAsync(Consumer<T> c, T param, long millis) {
+    public static <T> void consumeLaterAsync(Consumer<T> c, T param, long millis) {
         scheduledPool.schedule(() -> c.accept(param), millis, TimeUnit.MILLISECONDS);
     }
 
