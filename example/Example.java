@@ -16,6 +16,9 @@ public class Example {
         // Executing code later
         String someInformationToUseLater = "Information";
         Schedulers.consumeLaterAsync((message) -> Logger.getGlobal().log(Level.INFO, "[INFORMATION] " + message), someInformationToUseLater, 3000);
+
+        //This is the end of my program
+        Schedulers.shutdown();
     }
 
 }
